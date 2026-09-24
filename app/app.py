@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+from pathlib import Path
 
 # 1. 페이지 기본 설정
 st.set_page_config(page_title="배달특급 퍼널 분석", layout="wide")
 
 # 2. 데이터 로드 및 전처리
-df = pd.read_csv('delivery_app_logs.csv')
+DATA_PATH = Path(__file__).resolve().parents[1] / 'data' / 'delivery_app_logs.csv'
+df = pd.read_csv(DATA_PATH)
 if 'user_region' in df.columns:
     df = df.drop(columns=['user_region'])
 
